@@ -13,23 +13,23 @@ public class DanKey{
   public MidiDevice.Info[] infos;
   public Synthesizer synthesizer;
 
-  public String[] getDevices(){
-    infos = MidiSystem.getMidiDeviceInfo();
+  public MidiDevice.Info[] getDevices(){
+/*    infos = MidiSystem.getMidiDeviceInfo();
     String[] list = new String[infos.length]; 
     for (int i = 0; i < infos.length; i++){
       list[i] = i + ")" + infos[i].getName() + " - "+ infos[i].getDescription();
     }
-    return list;
+    return list;*/
+    return MidiSystem.getMidiDeviceInfo();
   }
    
-   public void setInputOutputDevices(int input, int output){
+   public void setInputOutputDevices(MidiDevice.Info input,
+                                     MidiDevice.Info output){
     try {
       //first set input
-      inputDevice =
-          MidiSystem.getMidiDevice(infos[input]);
+      inputDevice = MidiSystem.getMidiDevice(input);
       //then output
-      outputDevice =
-          MidiSystem.getMidiDevice(infos[output]);
+      outputDevice =MidiSystem.getMidiDevice(output);
     } catch (MidiUnavailableException e) {
       System.out.println("A MidiUnavailableException occured");
       e.getStackTrace();

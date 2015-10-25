@@ -2,7 +2,6 @@ import java.awt.Container;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-//import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
@@ -10,6 +9,7 @@ import javax.swing.JComponent;
 import java.awt.Component;
 import java.awt.event.*;
 import java.awt.Font;
+import javax.sound.midi.*;
 
 public class StartGUI extends JFrame implements ActionListener{
   private JButton next;
@@ -54,11 +54,8 @@ public class StartGUI extends JFrame implements ActionListener{
     //in which case, we want to set the input and output device, then call the
     //next GUI (the main one)
     //Also the following is a hack, only works if < 10 midi devices!
-    danKey.setInputOutputDevices(
-      Character.getNumericValue(
-        inputDevice.getSelectedItem().toString().toCharArray()[0]),
-      Character.getNumericValue(
-        inputDevice.getSelectedItem().toString().toCharArray()[0]));
+    danKey.setInputOutputDevices((MidiDevice.Info)inputDevice.getSelectedItem(),
+                              (MidiDevice.Info)outputDevice.getSelectedItem());
     //actually start the playing
     Thread playThread = new Thread(){//define this somewhere else
       public void run(){
