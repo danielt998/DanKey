@@ -57,11 +57,12 @@ public class StartGUI extends JFrame implements ActionListener{
     danKey.setInputOutputDevices((MidiDevice.Info)inputDevice.getSelectedItem(),
                               (MidiDevice.Info)outputDevice.getSelectedItem());
     //actually start the playing
-    Thread playThread = new Thread(){//define this somewhere else
+    Thread playThread = new Thread(){
       public void run(){
         danKey.play();
       }
-    };//Thread
+    };
+
     playThread.start();
     startMainGUI(danKey);
   }

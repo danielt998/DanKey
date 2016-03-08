@@ -14,12 +14,6 @@ public class DanKey{
   public Synthesizer synthesizer;
 
   public MidiDevice.Info[] getDevices(){
-/*    infos = MidiSystem.getMidiDeviceInfo();
-    String[] list = new String[infos.length]; 
-    for (int i = 0; i < infos.length; i++){
-      list[i] = i + ")" + infos[i].getName() + " - "+ infos[i].getDescription();
-    }
-    return list;*/
     return MidiSystem.getMidiDeviceInfo();
   }
    
