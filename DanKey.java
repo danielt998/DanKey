@@ -58,7 +58,7 @@ public class DanKey{
       }
     } catch (MidiUnavailableException e) {
       System.out.println("A MidiUnavailableException occured");
-      e.getStackTrace();
+      e.printStackTrace();
     } finally {
       inputDevice.close();
       outputDevice.close();
