@@ -20,13 +20,11 @@ public class DanKey{
    public void setInputOutputDevices(MidiDevice.Info input,
                                      MidiDevice.Info output){
     try {
-      //first set input
       inputDevice = MidiSystem.getMidiDevice(input);
-      //then output
-      outputDevice =MidiSystem.getMidiDevice(output);
+      outputDevice = MidiSystem.getMidiDevice(output);
     } catch (MidiUnavailableException e) {
       System.out.println("A MidiUnavailableException occured");
-      e.getStackTrace();
+      e.printStackTrace();
     }
   }   
 
@@ -36,7 +34,7 @@ public class DanKey{
       Transmitter transmitter;
       Receiver receiver;
 
-      // Open a connection to your input device
+      // Open a connection to the input device
       inputDevice.open();
       synthesizer.open();
 
@@ -44,11 +42,9 @@ public class DanKey{
       Instrument[] instr = synthesizer.getDefaultSoundbank().getInstruments();
       synthesizer.loadInstrument(instr[90]);
 
-      // Get the transmitter class from your input device
+      //get transmitter and receiver and connect them
       transmitter = inputDevice.getTransmitter();
-      // Get the receiver class from your sequencer
       receiver = synthesizer.getReceiver();
-      // Bind the transmitter to the receiver so the receiver gets input from the transmitter
       transmitter.setReceiver(receiver);
       //then wait for an interrupt (do nothing)
       try {
